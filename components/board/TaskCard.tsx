@@ -59,20 +59,25 @@ export function TaskCard({
       style={style}
       className={cn(
         "kb-card space-y-3 p-4",
+        isRunning && "border-amber-500/70 bg-amber-50 shadow-[0_10px_30px_-18px_rgba(245,158,11,0.65)]",
         (isDragging || dragging) && "opacity-70",
         dragging && "shadow-lg"
       )}
       {...attributes}
       {...listeners}
     >
-      <div className="flex items-start justify-between gap-2">
+      <div className="flex flex-wrap items-start justify-between gap-2">
         <div>
-          <h4 className="text-sm font-semibold text-slate-800">{task.titulo}</h4>
+          <h4 className={cn("text-sm font-semibold text-slate-800", isRunning && "text-amber-900")}>
+            {task.titulo}
+          </h4>
           {task.descripcion && (
-            <p className="mt-1 text-xs text-slate-500">{task.descripcion}</p>
+            <p className={cn("mt-1 text-xs text-slate-500", isRunning && "text-amber-700/80")}>
+              {task.descripcion}
+            </p>
           )}
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           {task.estado !== "done" && (
             <Button
               variant="outline"
@@ -120,22 +125,26 @@ export function TaskCard({
       </div>
       <div className="flex flex-wrap items-center gap-2">
         <Badge variant={task.prioridad}>{priorityLabel[task.prioridad]}</Badge>
-        <span className="text-xs text-slate-500">{task.estimacionMin} min</span>
+        <span className={cn("text-xs text-slate-500", isRunning && "text-amber-700")}>
+          {task.estimacionMin} min
+        </span>
         {task.fechaLimite && (
-          <span className="text-xs text-slate-500">Vence: {new Date(task.fechaLimite).toLocaleDateString()}</span>
+          <span className={cn("text-xs text-slate-500", isRunning && "text-amber-700")}>
+            Vence: {new Date(task.fechaLimite).toLocaleDateString()}
+          </span>
         )}
       </div>
       {showProgress && (
         <div className="space-y-1">
-          <div className="flex items-center justify-between text-[11px] text-slate-500">
+          <div className={cn("flex items-center justify-between text-[11px] text-slate-500", isRunning && "text-amber-700")}>
             <span>Progreso estimado</span>
             <span>{progress}%</span>
           </div>
-          <div className="h-2 w-full overflow-hidden rounded-full bg-slate-100">
+          <div className={cn("h-2 w-full overflow-hidden rounded-full bg-slate-100", isRunning && "bg-amber-100")}>
             <div
               className={cn(
                 "h-full rounded-full transition-[width] duration-500",
-                progress >= 100 ? "bg-amber-500" : "bg-emerald-500"
+                isRunning ? "bg-amber-500" : progress >= 100 ? "bg-amber-500" : "bg-emerald-500"
               )}
               style={{ width: `${progress}%` }}
             />
@@ -144,7 +153,7 @@ export function TaskCard({
       )}
       <div className="flex flex-wrap gap-2">
         {task.tags.map((tag) => (
-          <span key={tag} className="kb-tag">
+          <span key={tag} className={cn("kb-tag", isRunning && "border-amber-300 bg-amber-100 text-amber-800")}>
             {tag}
           </span>
         ))}

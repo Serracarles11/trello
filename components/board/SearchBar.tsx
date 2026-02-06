@@ -8,7 +8,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 
 export function SearchBar({ value, onChange }: { value: string; onChange: (value: string) => void }) {
   return (
-    <div className="flex w-full max-w-xl items-center gap-3">
+    <div className="flex w-full max-w-none items-center gap-3 lg:max-w-xl">
       <div className="w-full">
         <Input
           value={value}

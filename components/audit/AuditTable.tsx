@@ -28,7 +28,7 @@ export function AuditTable({ events }: { events: AuditEvent[] }) {
   return (
     <div className="mt-4 space-y-4">
       <div className="flex flex-wrap items-center gap-3">
-        <div className="w-48">
+        <div className="w-full sm:w-48">
           <Select value={actionFilter} onValueChange={setActionFilter}>
             <SelectTrigger>
               <SelectValue placeholder="Filtrar por acción" />
@@ -43,7 +43,7 @@ export function AuditTable({ events }: { events: AuditEvent[] }) {
             </SelectContent>
           </Select>
         </div>
-        <div className="w-72">
+        <div className="w-full sm:w-72">
           <Input
             value={taskFilter}
             onChange={(event) => setTaskFilter(event.target.value)}
@@ -56,34 +56,36 @@ export function AuditTable({ events }: { events: AuditEvent[] }) {
       {filtered.length === 0 ? (
         <div className="kb-empty">Sin eventos que coincidan con los filtros.</div>
       ) : (
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Timestamp</TableHead>
-              <TableHead>Acción</TableHead>
-              <TableHead>Task ID</TableHead>
-              <TableHead>Diff</TableHead>
-              <TableHead>User</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {filtered.map((event) => (
-              <TableRow key={`${event.timestamp}-${event.taskId}-${event.action}`}>
-                <TableCell className="text-xs text-slate-500">
-                  {new Date(event.timestamp).toLocaleString()}
-                </TableCell>
-                <TableCell className="text-xs font-semibold">{event.action}</TableCell>
-                <TableCell className="text-xs text-slate-600">{event.taskId}</TableCell>
-                <TableCell className="text-xs text-slate-600">
-                  <pre className="max-w-[240px] overflow-x-auto text-xs">
-                    {JSON.stringify(event.diff, null, 2)}
-                  </pre>
-                </TableCell>
-                <TableCell className="text-xs text-slate-600">{event.userLabel}</TableCell>
+        <div className="overflow-x-auto">
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Timestamp</TableHead>
+                <TableHead>Acción</TableHead>
+                <TableHead>Task ID</TableHead>
+                <TableHead>Diff</TableHead>
+                <TableHead>User</TableHead>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+            </TableHeader>
+            <TableBody>
+              {filtered.map((event) => (
+                <TableRow key={`${event.timestamp}-${event.taskId}-${event.action}`}>
+                  <TableCell className="text-xs text-slate-500">
+                    {new Date(event.timestamp).toLocaleString()}
+                  </TableCell>
+                  <TableCell className="text-xs font-semibold">{event.action}</TableCell>
+                  <TableCell className="text-xs text-slate-600">{event.taskId}</TableCell>
+                  <TableCell className="text-xs text-slate-600">
+                    <pre className="max-w-[240px] overflow-x-auto text-xs">
+                      {JSON.stringify(event.diff, null, 2)}
+                    </pre>
+                  </TableCell>
+                  <TableCell className="text-xs text-slate-600">{event.userLabel}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
       )}
     </div>
   );

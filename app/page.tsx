@@ -318,16 +318,16 @@ export default function Page() {
 
   return (
     <TooltipProvider>
-      <main className="mx-auto max-w-6xl px-6 py-10">
-        <header className="mb-8 space-y-3">
+      <main className="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6 lg:px-8 sm:py-10">
+        <header className="mb-8 space-y-4">
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-600">
           Mesa de Trading / Broker Ops
         </p>
-        <div className="flex flex-wrap items-center justify-between gap-4">
-          <h1 className="text-3xl font-semibold">Tablero operativo Kanban</h1>
-          <div className="flex items-center gap-3">
-            <Button onClick={handleCreate}>Nueva tarea</Button>
-            <Button variant="outline" onClick={handleExport} aria-label="Exportar JSON">
+        <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+          <h1 className="text-2xl font-semibold sm:text-3xl">Tablero operativo Kanban</h1>
+          <div className="flex w-full flex-wrap gap-3 lg:w-auto lg:justify-end">
+            <Button onClick={handleCreate} className="w-full sm:w-auto">Nueva tarea</Button>
+            <Button variant="outline" onClick={handleExport} aria-label="Exportar JSON" className="w-full sm:w-auto">
               Exportar JSON
             </Button>
             <input
@@ -344,14 +344,15 @@ export default function Page() {
             <Button
               variant="outline"
               onClick={() => fileInputRef.current?.click()}
+              className="w-full sm:w-auto"
             >
               Importar JSON
             </Button>
           </div>
         </div>
-        <div className="flex flex-wrap items-center justify-between gap-4">
+        <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           <SearchBar value={search} onChange={setSearch} />
-          <div className="flex items-center gap-3">
+          <div className="flex w-full flex-wrap items-center gap-3 sm:w-auto">
             <div className="flex items-center gap-2 text-sm font-medium text-slate-600">
               <span>Modo Dios</span>
               <Tooltip>
@@ -392,7 +393,7 @@ export default function Page() {
       )}
 
       <Tabs defaultValue="board">
-        <TabsList>
+        <TabsList className="w-full flex-wrap gap-2 sm:w-auto">
           <TabsTrigger value="board">Tablero</TabsTrigger>
           <TabsTrigger value="audit">Auditoría</TabsTrigger>
         </TabsList>
@@ -411,7 +412,7 @@ export default function Page() {
           />
         </TabsContent>
         <TabsContent value="audit">
-          <div className="flex items-center justify-between gap-3">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <h2 className="text-xl font-semibold">Log de auditoría</h2>
             <CopySummaryButton events={state.audit} />
           </div>

@@ -19,7 +19,7 @@ export function Column({ id, title, count, totalCount, children }: ColumnProps) 
     <section
       ref={setNodeRef}
       className={cn(
-        "kb-column min-h-[420px] space-y-4",
+        "kb-column min-h-[320px] space-y-4 sm:min-h-[420px]",
         isOver && "ring-2 ring-brand-400"
       )}
       aria-label={`Columna ${title}`}

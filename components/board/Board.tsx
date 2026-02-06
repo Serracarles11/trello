@@ -61,7 +61,7 @@ export function Board({ tasks, allTasks, onMove, onEdit, onDelete, onStart, godM
 
   return (
     <DndContext sensors={sensors} onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
-      <div className="grid grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
         {STATUSES.map((status) => {
           const columnTasks = tasks.filter((task) => task.estado === status);
           const totalCount = allTasks.filter((task) => task.estado === status).length;
