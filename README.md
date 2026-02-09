@@ -61,4 +61,4 @@ imagen/tablero.png
 ```
 
 ## Despliegue
-- Vercel: configura el proyecto y publica.
+- Vercel: https://trello-lake-eight.vercel.app/
