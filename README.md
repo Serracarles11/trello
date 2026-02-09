@@ -51,15 +51,13 @@ Mini gestor Kanban (Todo / Doing / Done) para operaciones de mesa de trading y b
 - DnD con `@dnd-kit` y sensores configurados para evitar arrastres accidentales.
 
 ## Capturas
-Guarda las im?genes en `public/screenshots/`. Nombres sugeridos:
-`public/screenshots/01-dashboard.png`, `public/screenshots/02-board.png`, `public/screenshots/03-audit.png`.
-
-Ejemplo de c?mo mostrarlas en el README:
 
 ```md
-![Dashboard](public/screenshots/01-dashboard.png)
-![Tablero](public/screenshots/02-board.png)
-![Auditor?a](public/screenshots/03-audit.png)
+![portada](imagen/portada.png)
+![auditoria](imagen/auditoria.png)
+![motivacion](imagen/motivacion.png)
+![tablero](imagen/tablero.png)
+
 ```
 
 ## Despliegue
