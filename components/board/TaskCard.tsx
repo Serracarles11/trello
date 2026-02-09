@@ -20,6 +20,7 @@ export function TaskCard({
   onEdit,
   onDelete,
   onStart,
+  onMove,
   dragging = false,
   godMode = false
 }: {
@@ -27,6 +28,7 @@ export function TaskCard({
   onEdit: (task: Task) => void;
   onDelete: (task: Task) => void;
   onStart: (task: Task) => void;
+  onMove: (id: string, to: Task["estado"]) => void;
   dragging?: boolean;
   godMode?: boolean;
 }) {
@@ -54,17 +56,60 @@ export function TaskCard({
   const elapsedMs = task.fechaInicio ? Math.max(0, now - new Date(task.fechaInicio).getTime()) : 0;
   const progress = estimateMs > 0 ? Math.min(100, Math.round((elapsedMs / estimateMs) * 100)) : 0;
   const showProgress = !!task.fechaInicio && estimateMs > 0 && !isDone;
+  const statusOrder: Task["estado"][] = ["todo", "doing", "done"];
+
+  function handleKeyDown(event: React.KeyboardEvent<HTMLElement>) {
+    if (event.altKey || event.ctrlKey || event.metaKey) return;
+
+    const currentIndex = statusOrder.indexOf(task.estado);
+    if (currentIndex < 0) return;
+
+    if (event.key === "ArrowRight") {
+      const next = statusOrder[Math.min(statusOrder.length - 1, currentIndex + 1)];
+      if (next !== task.estado) {
+        event.preventDefault();
+        onMove(task.id, next);
+      }
+    }
+
+    if (event.key === "ArrowLeft") {
+      const prev = statusOrder[Math.max(0, currentIndex - 1)];
+      if (prev !== task.estado) {
+        event.preventDefault();
+        onMove(task.id, prev);
+      }
+    }
+
+    if (event.key === "Home") {
+      event.preventDefault();
+      onMove(task.id, "todo");
+    }
+
+    if (event.key === "End") {
+      event.preventDefault();
+      onMove(task.id, "done");
+    }
+  }
 
   return (
     <article
       ref={dragRef}
       style={style}
+      tabIndex={dragging ? -1 : 0}
+      onKeyDown={handleKeyDown}
+      onPointerDown={(event) => {
+        if (dragging) return;
+        if (event.currentTarget instanceof HTMLElement) {
+          event.currentTarget.focus();
+        }
+      }}
       className={cn(
         "kb-card space-y-3 p-4",
         isRunning && "border-amber-500/70 bg-amber-50 shadow-[0_10px_30px_-18px_rgba(245,158,11,0.65)] dark:bg-amber-950/30 dark:border-amber-600/60",
         isDragging && !dragging && "opacity-0",
         dragging && "shadow-lg"
       )}
+      aria-label={`Tarea ${task.titulo}`}
       {...dragAttributes}
       {...dragListeners}
     >

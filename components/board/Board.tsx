@@ -94,6 +94,7 @@ export function Board({ tasks, allTasks, onMove, onEdit, onDelete, onStart, godM
                       onEdit={onEdit}
                       onDelete={onDelete}
                       onStart={onStart}
+                      onMove={onMove}
                       godMode={godMode}
                     />
                   ))}
@@ -110,6 +111,7 @@ export function Board({ tasks, allTasks, onMove, onEdit, onDelete, onStart, godM
             onEdit={(_task) => undefined}
             onDelete={(_task) => undefined}
             onStart={(_task) => undefined}
+            onMove={(_id, _to) => undefined}
             dragging
             godMode={godMode}
           />
