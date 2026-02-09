@@ -70,17 +70,17 @@ export function AuditTable({ events }: { events: AuditEvent[] }) {
             <TableBody>
               {filtered.map((event) => (
                 <TableRow key={`${event.timestamp}-${event.taskId}-${event.action}`}>
-                  <TableCell className="text-xs text-slate-500">
+                  <TableCell className="text-xs text-slate-500 dark:text-slate-400">
                     {new Date(event.timestamp).toLocaleString()}
                   </TableCell>
                   <TableCell className="text-xs font-semibold">{event.action}</TableCell>
-                  <TableCell className="text-xs text-slate-600">{event.taskId}</TableCell>
-                  <TableCell className="text-xs text-slate-600">
+                  <TableCell className="text-xs text-slate-600 dark:text-slate-300">{event.taskId}</TableCell>
+                  <TableCell className="text-xs text-slate-600 dark:text-slate-300">
                     <pre className="max-w-[240px] overflow-x-auto text-xs">
                       {JSON.stringify(event.diff, null, 2)}
                     </pre>
                   </TableCell>
-                  <TableCell className="text-xs text-slate-600">{event.userLabel}</TableCell>
+                  <TableCell className="text-xs text-slate-600 dark:text-slate-300">{event.userLabel}</TableCell>
                 </TableRow>
               ))}
             </TableBody>

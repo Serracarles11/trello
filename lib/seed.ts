@@ -25,7 +25,7 @@ const seedTasks: Task[] = [
     estimacionMin: 60,
     fechaCreacion: iso(now),
     fechaLimite: iso(new Date(now.getTime() + 5 * 24 * 60 * 60 * 1000)),
-    estado: "doing"
+    estado: "todo"
   },
   {
     id: createId(),
@@ -36,7 +36,7 @@ const seedTasks: Task[] = [
     estimacionMin: 30,
     fechaCreacion: iso(now),
     fechaLimite: iso(new Date(now.getTime() + 1 * 24 * 60 * 60 * 1000)),
-    estado: "doing"
+    estado: "todo"
   },
   {
     id: createId(),

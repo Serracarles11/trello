@@ -7,7 +7,7 @@ const Alert = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivEleme
       ref={ref}
       role="alert"
       className={cn(
-        "relative w-full rounded-lg border border-amber-200 bg-amber-50 p-4 text-amber-800",
+        "relative w-full rounded-lg border border-amber-200 bg-amber-50 p-4 text-amber-800 dark:border-amber-900/40 dark:bg-amber-950/40 dark:text-amber-200",
         className
       )}
       {...props}

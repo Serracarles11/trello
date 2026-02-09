@@ -253,7 +253,7 @@ export function TaskDialog({ open, onOpenChange, task, onSubmit, godMode }: Task
                   name="observacionesJavi"
                   render={({ field }) => (
                     <FormItem className="md:col-span-2">
-                      <FormLabel>Observaciones de Javi</FormLabel>
+                      <FormLabel>Observaciones</FormLabel>
                       <FormControl>
                         <Textarea placeholder="Notas internas" {...field} />
                       </FormControl>

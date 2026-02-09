@@ -59,7 +59,7 @@ export function TaskCard({
       style={style}
       className={cn(
         "kb-card space-y-3 p-4",
-        isRunning && "border-amber-500/70 bg-amber-50 shadow-[0_10px_30px_-18px_rgba(245,158,11,0.65)]",
+        isRunning && "border-amber-500/70 bg-amber-50 shadow-[0_10px_30px_-18px_rgba(245,158,11,0.65)] dark:bg-amber-950/30 dark:border-amber-600/60",
         (isDragging || dragging) && "opacity-70",
         dragging && "shadow-lg"
       )}
@@ -68,11 +68,11 @@ export function TaskCard({
     >
       <div className="flex flex-wrap items-start justify-between gap-2">
         <div>
-          <h4 className={cn("text-sm font-semibold text-slate-800", isRunning && "text-amber-900")}>
+          <h4 className={cn("text-sm font-semibold text-slate-800 dark:text-slate-100", isRunning && "text-amber-900 dark:text-amber-200")}>
             {task.titulo}
           </h4>
           {task.descripcion && (
-            <p className={cn("mt-1 text-xs text-slate-500", isRunning && "text-amber-700/80")}>
+            <p className={cn("mt-1 text-xs text-slate-500 dark:text-slate-400", isRunning && "text-amber-700/80 dark:text-amber-200/80")}>
               {task.descripcion}
             </p>
           )}
@@ -125,22 +125,22 @@ export function TaskCard({
       </div>
       <div className="flex flex-wrap items-center gap-2">
         <Badge variant={task.prioridad}>{priorityLabel[task.prioridad]}</Badge>
-        <span className={cn("text-xs text-slate-500", isRunning && "text-amber-700")}>
+        <span className={cn("text-xs text-slate-500 dark:text-slate-400", isRunning && "text-amber-700 dark:text-amber-200")}>
           {task.estimacionMin} min
         </span>
         {task.fechaLimite && (
-          <span className={cn("text-xs text-slate-500", isRunning && "text-amber-700")}>
+          <span className={cn("text-xs text-slate-500 dark:text-slate-400", isRunning && "text-amber-700 dark:text-amber-200")}>
             Vence: {new Date(task.fechaLimite).toLocaleDateString()}
           </span>
         )}
       </div>
       {showProgress && (
         <div className="space-y-1">
-          <div className={cn("flex items-center justify-between text-[11px] text-slate-500", isRunning && "text-amber-700")}>
+          <div className={cn("flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400", isRunning && "text-amber-700 dark:text-amber-200")}>
             <span>Progreso estimado</span>
             <span>{progress}%</span>
           </div>
-          <div className={cn("h-2 w-full overflow-hidden rounded-full bg-slate-100", isRunning && "bg-amber-100")}>
+          <div className={cn("h-2 w-full overflow-hidden rounded-full bg-slate-100 dark:bg-slate-800", isRunning && "bg-amber-100 dark:bg-amber-900/40")}>
             <div
               className={cn(
                 "h-full rounded-full transition-[width] duration-500",
@@ -153,19 +153,19 @@ export function TaskCard({
       )}
       <div className="flex flex-wrap gap-2">
         {task.tags.map((tag) => (
-          <span key={tag} className={cn("kb-tag", isRunning && "border-amber-300 bg-amber-100 text-amber-800")}>
+          <span key={tag} className={cn("kb-tag", isRunning && "border-amber-300 bg-amber-100 text-amber-800 dark:border-amber-500/60 dark:bg-amber-900/30 dark:text-amber-200")}>
             {tag}
           </span>
         ))}
       </div>
       {godMode && (
-        <div className="rounded-lg border border-slate-200 bg-slate-50 p-2 text-xs text-slate-600">
-          <p className="font-semibold text-slate-700">Observaciones de Javi</p>
+        <div className="rounded-lg border border-slate-200 bg-slate-50 p-2 text-xs text-slate-600 dark:border-slate-800 dark:bg-slate-900/60 dark:text-slate-300">
+          <p className="font-semibold text-slate-700 dark:text-slate-200">Observaciones</p>
           <p className="mt-1">{task.observacionesJavi || "Sin observaciones"}</p>
           <div className="mt-2 flex items-center justify-between">
             <span>Rúbrica: {task.rubricaScore ?? "Sin evaluar"}</span>
             {task.rubricaComentario && (
-              <span className="text-slate-500">{task.rubricaComentario}</span>
+              <span className="text-slate-500 dark:text-slate-400">{task.rubricaComentario}</span>
             )}
           </div>
         </div>

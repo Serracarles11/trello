@@ -20,14 +20,14 @@ export function Column({ id, title, count, totalCount, children }: ColumnProps) 
       ref={setNodeRef}
       className={cn(
         "kb-column min-h-[320px] space-y-4 sm:min-h-[420px]",
-        isOver && "ring-2 ring-brand-400"
+        isOver && "ring-2 ring-brand-400 dark:ring-brand-300"
       )}
       aria-label={`Columna ${title}`}
     >
       <header className="flex items-center justify-between">
         <div>
-          <h3 className="text-lg font-semibold text-slate-800">{title}</h3>
-          <p className="text-xs text-slate-500">
+          <h3 className="text-lg font-semibold text-slate-800 dark:text-slate-100">{title}</h3>
+          <p className="text-xs text-slate-500 dark:text-slate-400">
             {count} visibles · {totalCount} total
           </p>
         </div>

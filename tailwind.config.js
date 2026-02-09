@@ -33,8 +33,8 @@ module.exports = {
         }
       },
       fontFamily: {
-        display: ["Sora", "ui-sans-serif", "system-ui"],
-        body: ["Work Sans", "ui-sans-serif", "system-ui"]
+        display: ["var(--font-display)", "ui-sans-serif", "system-ui"],
+        body: ["var(--font-body)", "ui-sans-serif", "system-ui"]
       }
     }
   },
