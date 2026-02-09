@@ -11,6 +11,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
 const formSchema = z.object({
   titulo: z.string().min(3),
@@ -291,10 +292,20 @@ export function TaskDialog({ open, onOpenChange, task, onSubmit, godMode }: Task
             )}
 
             <div className="md:col-span-2 flex justify-end gap-3 pt-2">
-              <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>
-                Cancelar
-              </Button>
-              <Button type="submit">Guardar</Button>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>
+                    Cancelar
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>Cierra sin guardar cambios.</TooltipContent>
+              </Tooltip>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button type="submit">Guardar</Button>
+                </TooltipTrigger>
+                <TooltipContent>Guarda la tarea.</TooltipContent>
+              </Tooltip>
             </div>
           </form>
         </Form>

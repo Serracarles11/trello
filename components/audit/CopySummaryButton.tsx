@@ -3,6 +3,7 @@
 import React from "react";
 import type { AuditEvent } from "@/types";
 import { Button } from "@/components/ui/button";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { toast } from "sonner";
 
 export function CopySummaryButton({ events }: { events: AuditEvent[] }) {
@@ -44,9 +45,14 @@ export function CopySummaryButton({ events }: { events: AuditEvent[] }) {
   }
 
   return (
-    <Button variant="outline" onClick={handleCopy} aria-label="Copiar resumen de auditoría">
-      Copiar resumen
-    </Button>
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Button variant="outline" onClick={handleCopy} aria-label="Copiar resumen de auditoría">
+          Copiar resumen
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent>Copia el resumen al portapapeles.</TooltipContent>
+    </Tooltip>
   );
 }
 

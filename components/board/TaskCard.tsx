@@ -7,6 +7,7 @@ import { Pencil, Play, Trash2 } from "lucide-react";
 import type { Task } from "@/types";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 
 const priorityLabel: Record<Task["prioridad"], string> = {
@@ -126,48 +127,63 @@ export function TaskCard({
         </div>
         <div className="flex flex-wrap items-center gap-2">
           {task.estado !== "done" && (
-            <Button
-              variant="outline"
-              size="sm"
-              className="h-8 gap-1 px-2 text-xs"
-              onClick={(event) => {
-                event.stopPropagation();
-                onStart(task);
-              }}
-              onPointerDown={(event) => event.stopPropagation()}
-              onKeyDownCapture={(event) => event.stopPropagation()}
-              aria-label={isRunning ? "Pausar tarea" : "Empezar tarea"}
-            >
-              <Play className="h-3 w-3" />
-              {isRunning ? "Pausar" : "Empezar"}
-            </Button>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="h-8 gap-1 px-2 text-xs"
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    onStart(task);
+                  }}
+                  onPointerDown={(event) => event.stopPropagation()}
+                  onKeyDownCapture={(event) => event.stopPropagation()}
+                  aria-label={isRunning ? "Pausar tarea" : "Empezar tarea"}
+                >
+                  <Play className="h-3 w-3" />
+                  {isRunning ? "Pausar" : "Empezar"}
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>{isRunning ? "Pausa el cronómetro de la tarea." : "Inicia el cronómetro de la tarea."}</TooltipContent>
+            </Tooltip>
           )}
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={(event) => {
-              event.stopPropagation();
-              onEdit(task);
-            }}
-            onPointerDown={(event) => event.stopPropagation()}
-            onKeyDownCapture={(event) => event.stopPropagation()}
-            aria-label="Editar tarea"
-          >
-            <Pencil className="h-4 w-4" />
-          </Button>
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={(event) => {
-              event.stopPropagation();
-              onDelete(task);
-            }}
-            onPointerDown={(event) => event.stopPropagation()}
-            onKeyDownCapture={(event) => event.stopPropagation()}
-            aria-label="Eliminar tarea"
-          >
-            <Trash2 className="h-4 w-4" />
-          </Button>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  onEdit(task);
+                }}
+                onPointerDown={(event) => event.stopPropagation()}
+                onKeyDownCapture={(event) => event.stopPropagation()}
+                aria-label="Editar tarea"
+              >
+                <Pencil className="h-4 w-4" />
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent>Editar tarea.</TooltipContent>
+          </Tooltip>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  onDelete(task);
+                }}
+                onPointerDown={(event) => event.stopPropagation()}
+                onKeyDownCapture={(event) => event.stopPropagation()}
+                aria-label="Eliminar tarea"
+              >
+                <Trash2 className="h-4 w-4" />
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent>Eliminar tarea.</TooltipContent>
+          </Tooltip>
         </div>
       </div>
       <div className="flex flex-wrap items-center gap-2">

@@ -5,6 +5,7 @@ import { Info } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
 export function SearchBar({ value, onChange }: { value: string; onChange: (value: string) => void }) {
   return (
@@ -18,11 +19,16 @@ export function SearchBar({ value, onChange }: { value: string; onChange: (value
         />
       </div>
       <Popover>
-        <PopoverTrigger asChild>
-          <Button variant="outline" size="icon" aria-label="Ayuda de búsqueda">
-            <Info className="h-4 w-4" />
-          </Button>
-        </PopoverTrigger>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <PopoverTrigger asChild>
+              <Button variant="outline" size="icon" aria-label="Ayuda de búsqueda">
+                <Info className="h-4 w-4" />
+              </Button>
+            </PopoverTrigger>
+          </TooltipTrigger>
+          <TooltipContent>Ver ayuda de búsqueda.</TooltipContent>
+        </Tooltip>
         <PopoverContent align="end">
           <div className="space-y-2">
             <p className="text-sm font-semibold text-slate-700 dark:text-slate-200">Sintaxis rápida</p>

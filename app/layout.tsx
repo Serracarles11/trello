@@ -2,6 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Toaster } from "@/components/ui/sonner";
 import { Sora, Work_Sans } from "next/font/google";
+import { AppProviders } from "@/components/providers/AppProviders";
 
 const display = Sora({
   subsets: ["latin"],
@@ -26,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className={`${display.variable} ${body.variable} font-body text-slate-900 dark:text-slate-100`}>
-        {children}
+        <AppProviders>{children}</AppProviders>
         <Toaster richColors />
       </body>
     </html>

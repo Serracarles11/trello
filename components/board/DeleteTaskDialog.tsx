@@ -11,6 +11,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle
 } from "@/components/ui/alert-dialog";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
 export function DeleteTaskDialog({
   task,
@@ -31,8 +32,18 @@ export function DeleteTaskDialog({
           </AlertDialogDescription>
         </AlertDialogHeader>
         <div className="flex justify-end gap-3">
-          <AlertDialogCancel onClick={onCancel}>Cancelar</AlertDialogCancel>
-          <AlertDialogAction onClick={onConfirm}>Eliminar</AlertDialogAction>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <AlertDialogCancel onClick={onCancel}>Cancelar</AlertDialogCancel>
+            </TooltipTrigger>
+            <TooltipContent>Cierra sin eliminar la tarea.</TooltipContent>
+          </Tooltip>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <AlertDialogAction onClick={onConfirm}>Eliminar</AlertDialogAction>
+            </TooltipTrigger>
+            <TooltipContent>Elimina la tarea de forma definitiva.</TooltipContent>
+          </Tooltip>
         </div>
       </AlertDialogContent>
     </AlertDialog>

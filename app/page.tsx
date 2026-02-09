@@ -12,7 +12,7 @@ import { GodModePanel } from "@/components/board/GodModePanel";
 import { AuditTable } from "@/components/audit/AuditTable";
 import { CopySummaryButton } from "@/components/audit/CopySummaryButton";
 import { SearchBar } from "@/components/board/SearchBar";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { parseQuery, filterTasks } from "@/lib/query";
 import { loadState, saveState } from "@/lib/storage";
 import { diffTask } from "@/lib/diff";
@@ -396,7 +396,6 @@ export default function Page() {
   }
 
   return (
-    <TooltipProvider>
       <main className="relative min-h-screen overflow-hidden">
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute -top-24 left-[-10%] h-72 w-72 rounded-full bg-brand-100/70 blur-3xl dark:bg-brand-900/40" />
@@ -419,20 +418,30 @@ export default function Page() {
                 </p>
               </div>
               <div className="flex flex-wrap gap-3">
-                <Button
-                  onClick={handleCreate}
-                  className="bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-brand-700 dark:bg-brand-500 dark:hover:bg-brand-400"
-                >
-                  Nueva tarea
-                </Button>
-                <Button
-                  variant="outline"
-                  onClick={handleExport}
-                  aria-label="Exportar JSON"
-                  className="border-slate-200 bg-white/80 px-5 py-2.5 text-sm font-semibold text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-900/80 dark:text-slate-200 dark:hover:bg-slate-800"
-                >
-                  Exportar JSON
-                </Button>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      onClick={handleCreate}
+                      className="bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-brand-700 dark:bg-brand-500 dark:hover:bg-brand-400"
+                    >
+                      Nueva tarea
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>Crea una nueva tarea en el tablero.</TooltipContent>
+                </Tooltip>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      variant="outline"
+                      onClick={handleExport}
+                      aria-label="Exportar JSON"
+                      className="border-slate-200 bg-white/80 px-5 py-2.5 text-sm font-semibold text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-900/80 dark:text-slate-200 dark:hover:bg-slate-800"
+                    >
+                      Exportar JSON
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>Descarga el estado actual en JSON.</TooltipContent>
+                </Tooltip>
                 <input
                   ref={fileInputRef}
                   type="file"
@@ -444,13 +453,18 @@ export default function Page() {
                     event.currentTarget.value = "";
                   }}
                 />
-                <Button
-                  variant="outline"
-                  onClick={() => fileInputRef.current?.click()}
-                  className="border-slate-200 bg-white/80 px-5 py-2.5 text-sm font-semibold text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-900/80 dark:text-slate-200 dark:hover:bg-slate-800"
-                >
-                  Importar JSON
-                </Button>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      variant="outline"
+                      onClick={() => fileInputRef.current?.click()}
+                      className="border-slate-200 bg-white/80 px-5 py-2.5 text-sm font-semibold text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-900/80 dark:text-slate-200 dark:hover:bg-slate-800"
+                    >
+                      Importar JSON
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>Sube un JSON para restaurar tareas.</TooltipContent>
+                </Tooltip>
               </div>
               <div className="rounded-2xl border border-slate-200 bg-white/80 p-2 shadow-sm backdrop-blur dark:border-slate-800 dark:bg-slate-900/80 dark:shadow-none">
                 <SearchBar value={search} onChange={setSearch} />
@@ -504,11 +518,16 @@ export default function Page() {
                     </div>
                     <p className="text-xs text-slate-500 dark:text-slate-400">Supervisión avanzada y criterios de revisión.</p>
                   </div>
-                  <Switch
-                    checked={state.godMode}
-                    onCheckedChange={(checked) => dispatch({ type: "TOGGLE_GODMODE", payload: checked })}
-                    aria-label="Activar modo Dios"
-                  />
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Switch
+                        checked={state.godMode}
+                        onCheckedChange={(checked) => dispatch({ type: "TOGGLE_GODMODE", payload: checked })}
+                        aria-label="Activar modo Dios"
+                      />
+                    </TooltipTrigger>
+                    <TooltipContent>Activa observaciones y rúbrica internas.</TooltipContent>
+                  </Tooltip>
                 </div>
               </div>
               <div className="mt-4 rounded-2xl border border-slate-200 bg-white px-4 py-4 dark:border-slate-800 dark:bg-slate-900/70">
@@ -519,11 +538,16 @@ export default function Page() {
                     </div>
                     <p className="text-xs text-slate-500 dark:text-slate-400">Activa la interfaz en modo oscuro.</p>
                   </div>
-                  <Switch
-                    checked={darkMode}
-                    onCheckedChange={setDarkMode}
-                    aria-label="Activar modo noche"
-                  />
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Switch
+                        checked={darkMode}
+                        onCheckedChange={setDarkMode}
+                        aria-label="Activar modo noche"
+                      />
+                    </TooltipTrigger>
+                    <TooltipContent>Cambia entre modo claro y oscuro.</TooltipContent>
+                  </Tooltip>
                 </div>
               </div>
               <div className="mt-4 flex items-center justify-between rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-xs font-semibold uppercase tracking-[0.3em] text-slate-500 dark:border-slate-800 dark:bg-slate-900/70 dark:text-slate-400">
@@ -612,14 +636,19 @@ export default function Page() {
           />
 
           {doingCount > 0 && (
-            <button
-              type="button"
-              onClick={handleMotivationClick}
-              className="fixed bottom-6 right-6 z-40 rounded-full bg-gradient-to-r from-brand-600 to-brand-500 px-5 py-3 text-sm font-semibold text-white shadow-lg transition hover:-translate-y-0.5 hover:from-brand-700 hover:to-brand-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 dark:from-brand-500 dark:to-brand-400 dark:hover:from-brand-400 dark:hover:to-brand-300"
-              aria-label="Mostrar frase motivadora"
-            >
-              Motivación
-            </button>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <button
+                  type="button"
+                  onClick={handleMotivationClick}
+                  className="fixed bottom-6 right-6 z-40 rounded-full bg-gradient-to-r from-brand-600 to-brand-500 px-5 py-3 text-sm font-semibold text-white shadow-lg transition hover:-translate-y-0.5 hover:from-brand-700 hover:to-brand-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 dark:from-brand-500 dark:to-brand-400 dark:hover:from-brand-400 dark:hover:to-brand-300"
+                  aria-label="Mostrar frase motivadora"
+                >
+                  Motivación
+                </button>
+              </TooltipTrigger>
+              <TooltipContent>Activa una frase motivadora y música.</TooltipContent>
+            </Tooltip>
           )}
 
           {motivationOpen && (
@@ -640,6 +669,5 @@ export default function Page() {
           <audio ref={audioRef} src="/sonido/motivacion.mp3" preload="auto" />
         </div>
       </main>
-    </TooltipProvider>
   );
 }
