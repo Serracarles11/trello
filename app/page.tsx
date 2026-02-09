@@ -399,29 +399,29 @@ export default function Page() {
     <TooltipProvider>
       <main className="relative min-h-screen overflow-hidden">
         <div className="pointer-events-none absolute inset-0">
-          <div className="absolute -top-24 left-[-10%] h-72 w-72 rounded-full bg-brand-100/70 blur-3xl" />
-          <div className="absolute top-24 right-[-12%] h-96 w-96 rounded-full bg-accent-100/70 blur-3xl" />
-          <div className="absolute bottom-[-15%] left-1/3 h-80 w-80 rounded-full bg-slate-100/80 blur-3xl" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(17,46,72,0.08),transparent_55%)]" />
+          <div className="absolute -top-24 left-[-10%] h-72 w-72 rounded-full bg-brand-100/70 blur-3xl dark:bg-brand-900/40" />
+          <div className="absolute top-24 right-[-12%] h-96 w-96 rounded-full bg-accent-100/70 blur-3xl dark:bg-accent-700/30" />
+          <div className="absolute bottom-[-15%] left-1/3 h-80 w-80 rounded-full bg-slate-100/80 blur-3xl dark:bg-slate-800/60" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(17,46,72,0.08),transparent_55%)] dark:bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.06),transparent_55%)]" />
         </div>
         <div className="relative mx-auto w-full max-w-6xl px-4 pb-16 pt-10 sm:px-6 lg:px-8">
           <header className="mb-10 grid gap-8 lg:grid-cols-[1.15fr_0.85fr] animate-fade-up">
             <div className="space-y-6">
-              <div className="inline-flex items-center gap-2 rounded-full border border-brand-100 bg-white/80 px-3 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-brand-700 shadow-sm">
+              <div className="inline-flex items-center gap-2 rounded-full border border-brand-100 bg-white/80 px-3 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-brand-700 shadow-sm dark:border-brand-800/60 dark:bg-slate-900/80 dark:text-brand-200 dark:shadow-none">
                 Micro-Trello Ops
               </div>
               <div className="space-y-3">
-                <h1 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
+                <h1 className="text-3xl font-semibold tracking-tight text-slate-900 dark:text-slate-100 sm:text-4xl lg:text-5xl">
                   Tablero operativo Kanban
                 </h1>
-                <p className="max-w-xl text-base text-slate-600 sm:text-lg">
+                <p className="max-w-xl text-base text-slate-600 dark:text-slate-300 sm:text-lg">
                   Micro-Trello con auditoría y modo Dios para mantener foco, ritmo y trazabilidad en cada entrega.
                 </p>
               </div>
               <div className="flex flex-wrap gap-3">
                 <Button
                   onClick={handleCreate}
-                  className="bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-brand-700"
+                  className="bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-brand-700 dark:bg-brand-500 dark:hover:bg-brand-400"
                 >
                   Nueva tarea
                 </Button>
@@ -429,7 +429,7 @@ export default function Page() {
                   variant="outline"
                   onClick={handleExport}
                   aria-label="Exportar JSON"
-                  className="border-slate-200 bg-white/80 px-5 py-2.5 text-sm font-semibold text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:bg-white"
+                  className="border-slate-200 bg-white/80 px-5 py-2.5 text-sm font-semibold text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:bg-white dark:border-slate-700 dark:bg-slate-900/80 dark:text-slate-200 dark:hover:bg-slate-900"
                 >
                   Exportar JSON
                 </Button>
@@ -447,51 +447,51 @@ export default function Page() {
                 <Button
                   variant="outline"
                   onClick={() => fileInputRef.current?.click()}
-                  className="border-slate-200 bg-white/80 px-5 py-2.5 text-sm font-semibold text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:bg-white"
+                  className="border-slate-200 bg-white/80 px-5 py-2.5 text-sm font-semibold text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:bg-white dark:border-slate-700 dark:bg-slate-900/80 dark:text-slate-200 dark:hover:bg-slate-900"
                 >
                   Importar JSON
                 </Button>
               </div>
-              <div className="rounded-2xl border border-slate-200 bg-white/80 p-2 shadow-sm backdrop-blur">
+              <div className="rounded-2xl border border-slate-200 bg-white/80 p-2 shadow-sm backdrop-blur dark:border-slate-800 dark:bg-slate-900/80 dark:shadow-none">
                 <SearchBar value={search} onChange={setSearch} />
               </div>
             </div>
 
-            <div className="rounded-3xl border border-slate-200 bg-white/80 p-6 shadow-xl backdrop-blur">
+            <div className="rounded-3xl border border-slate-200 bg-white/80 p-6 shadow-xl backdrop-blur dark:border-slate-800 dark:bg-slate-900/80 dark:shadow-none">
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-500">Estado</p>
-                  <h2 className="text-lg font-semibold text-slate-900">Resumen operativo</h2>
+                  <p className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-500 dark:text-slate-400">Estado</p>
+                  <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-100">Resumen operativo</h2>
                 </div>
-                <div className="rounded-full bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-700">En vivo</div>
+                <div className="rounded-full bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-700 dark:bg-brand-900/60 dark:text-brand-200">En vivo</div>
               </div>
               <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-3">
-                <div className="rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-sm">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-400">Total</p>
-                  <p className="mt-2 text-2xl font-semibold text-slate-900">{totalCount}</p>
-                  <p className="text-xs text-slate-500">tareas</p>
+                <div className="rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-sm dark:border-slate-800 dark:bg-slate-900/80 dark:shadow-none">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-400 dark:text-slate-500">Total</p>
+                  <p className="mt-2 text-2xl font-semibold text-slate-900 dark:text-slate-100">{totalCount}</p>
+                  <p className="text-xs text-slate-500 dark:text-slate-400">tareas</p>
                 </div>
-                <div className="rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-sm">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-400">En curso</p>
-                  <p className="mt-2 text-2xl font-semibold text-slate-900">{doingCount}</p>
-                  <p className="text-xs text-slate-500">activas</p>
+                <div className="rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-sm dark:border-slate-800 dark:bg-slate-900/80 dark:shadow-none">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-400 dark:text-slate-500">En curso</p>
+                  <p className="mt-2 text-2xl font-semibold text-slate-900 dark:text-slate-100">{doingCount}</p>
+                  <p className="text-xs text-slate-500 dark:text-slate-400">activas</p>
                 </div>
-                <div className="rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-sm">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-400">Completadas</p>
-                  <p className="mt-2 text-2xl font-semibold text-slate-900">{doneCount}</p>
-                  <p className="text-xs text-slate-500">cerradas</p>
+                <div className="rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-sm dark:border-slate-800 dark:bg-slate-900/80 dark:shadow-none">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-400 dark:text-slate-500">Completadas</p>
+                  <p className="mt-2 text-2xl font-semibold text-slate-900 dark:text-slate-100">{doneCount}</p>
+                  <p className="text-xs text-slate-500 dark:text-slate-400">cerradas</p>
                 </div>
               </div>
-              <div className="mt-6 rounded-2xl border border-slate-200 bg-white px-4 py-4">
+              <div className="mt-6 rounded-2xl border border-slate-200 bg-white px-4 py-4 dark:border-slate-800 dark:bg-slate-900/70">
                 <div className="flex items-center justify-between gap-4">
                   <div>
-                    <div className="flex items-center gap-2 text-sm font-semibold text-slate-700">
+                    <div className="flex items-center gap-2 text-sm font-semibold text-slate-700 dark:text-slate-100">
                       <span>Modo Dios</span>
                       <Tooltip>
                         <TooltipTrigger asChild>
                           <button
                             type="button"
-                            className="rounded-md p-1 text-slate-500 hover:bg-slate-100 focus-visible:ring-2 focus-visible:ring-brand-500"
+                            className="rounded-md p-1 text-slate-500 hover:bg-slate-100 focus-visible:ring-2 focus-visible:ring-brand-500 dark:text-slate-300 dark:hover:bg-slate-800"
                             aria-label="Info Modo Dios"
                           >
                             <Info className="h-4 w-4" />
@@ -502,7 +502,7 @@ export default function Page() {
                         </TooltipContent>
                       </Tooltip>
                     </div>
-                    <p className="text-xs text-slate-500">Supervisión avanzada y criterios de revisión.</p>
+                    <p className="text-xs text-slate-500 dark:text-slate-400">Supervisión avanzada y criterios de revisión.</p>
                   </div>
                   <Switch
                     checked={state.godMode}
@@ -511,13 +511,13 @@ export default function Page() {
                   />
                 </div>
               </div>
-              <div className="mt-4 rounded-2xl border border-slate-200 bg-white px-4 py-4">
+              <div className="mt-4 rounded-2xl border border-slate-200 bg-white px-4 py-4 dark:border-slate-800 dark:bg-slate-900/70">
                 <div className="flex items-center justify-between gap-4">
                   <div>
-                    <div className="flex items-center gap-2 text-sm font-semibold text-slate-700">
+                    <div className="flex items-center gap-2 text-sm font-semibold text-slate-700 dark:text-slate-100">
                       <span>Modo noche</span>
                     </div>
-                    <p className="text-xs text-slate-500">Activa la interfaz en modo oscuro.</p>
+                    <p className="text-xs text-slate-500 dark:text-slate-400">Activa la interfaz en modo oscuro.</p>
                   </div>
                   <Switch
                     checked={darkMode}
@@ -526,15 +526,15 @@ export default function Page() {
                   />
                 </div>
               </div>
-              <div className="mt-4 flex items-center justify-between rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-xs font-semibold uppercase tracking-[0.3em] text-slate-500">
+              <div className="mt-4 flex items-center justify-between rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-xs font-semibold uppercase tracking-[0.3em] text-slate-500 dark:border-slate-800 dark:bg-slate-900/70 dark:text-slate-400">
                 <span>Pendientes</span>
-                <span className="text-slate-700">{todoCount}</span>
+                <span className="text-slate-700 dark:text-slate-100">{todoCount}</span>
               </div>
             </div>
           </header>
 
           {importErrors.length > 0 && (
-            <Alert className="mb-6 rounded-2xl border border-rose-100 bg-rose-50/80 text-rose-900">
+            <Alert className="mb-6 rounded-2xl border border-rose-100 bg-rose-50/80 text-rose-900 dark:border-rose-900/40 dark:bg-rose-950/40 dark:text-rose-200">
               <AlertTitle>No se pudo importar</AlertTitle>
               <AlertDescription>
                 <ul className="list-disc pl-5">
@@ -546,24 +546,24 @@ export default function Page() {
             </Alert>
           )}
 
-          <section className="rounded-3xl border border-slate-200 bg-white/80 p-6 shadow-xl backdrop-blur animate-fade-up [animation-delay:120ms]">
+          <section className="rounded-3xl border border-slate-200 bg-white/80 p-6 shadow-xl backdrop-blur animate-fade-up [animation-delay:120ms] dark:border-slate-800 dark:bg-slate-900/80 dark:shadow-none">
             <Tabs defaultValue="board" className="space-y-6">
               <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-                <TabsList className="flex w-full flex-wrap gap-2 rounded-full border border-slate-200 bg-slate-100/80 p-1 sm:w-auto">
+                <TabsList className="flex w-full flex-wrap gap-2 rounded-full border border-slate-200 bg-slate-100/80 p-1 sm:w-auto dark:border-slate-800 dark:bg-slate-900/70">
                   <TabsTrigger
                     value="board"
-                    className="rounded-full px-4 py-2 text-sm font-semibold text-slate-600 data-[state=active]:bg-white data-[state=active]:text-brand-700 data-[state=active]:shadow-sm"
+                    className="rounded-full px-4 py-2 text-sm font-semibold text-slate-600 data-[state=active]:bg-white data-[state=active]:text-brand-700 data-[state=active]:shadow-sm dark:text-slate-300 data-[state=active]:dark:bg-slate-950 data-[state=active]:dark:text-brand-200"
                   >
                     Tablero
                   </TabsTrigger>
                   <TabsTrigger
                     value="audit"
-                    className="rounded-full px-4 py-2 text-sm font-semibold text-slate-600 data-[state=active]:bg-white data-[state=active]:text-brand-700 data-[state=active]:shadow-sm"
+                    className="rounded-full px-4 py-2 text-sm font-semibold text-slate-600 data-[state=active]:bg-white data-[state=active]:text-brand-700 data-[state=active]:shadow-sm dark:text-slate-300 data-[state=active]:dark:bg-slate-950 data-[state=active]:dark:text-brand-200"
                   >
                     Auditoría
                   </TabsTrigger>
                 </TabsList>
-                <div className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-500">
+                <div className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-500 dark:text-slate-400">
                   Control de operaciones
                 </div>
               </div>
@@ -584,8 +584,8 @@ export default function Page() {
               <TabsContent value="audit" className="space-y-4">
                 <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                   <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-500">Historial</p>
-                    <h2 className="text-xl font-semibold text-slate-900">Log de auditoría</h2>
+                    <p className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-500 dark:text-slate-400">Historial</p>
+                    <h2 className="text-xl font-semibold text-slate-900 dark:text-slate-100">Log de auditoría</h2>
                   </div>
                   <CopySummaryButton events={state.audit} />
                 </div>
@@ -615,7 +615,7 @@ export default function Page() {
             <button
               type="button"
               onClick={handleMotivationClick}
-              className="fixed bottom-6 right-6 z-40 rounded-full bg-gradient-to-r from-brand-600 to-brand-500 px-5 py-3 text-sm font-semibold text-white shadow-lg transition hover:-translate-y-0.5 hover:from-brand-700 hover:to-brand-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
+              className="fixed bottom-6 right-6 z-40 rounded-full bg-gradient-to-r from-brand-600 to-brand-500 px-5 py-3 text-sm font-semibold text-white shadow-lg transition hover:-translate-y-0.5 hover:from-brand-700 hover:to-brand-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 dark:from-brand-500 dark:to-brand-400 dark:hover:from-brand-400 dark:hover:to-brand-300"
               aria-label="Mostrar frase motivadora"
             >
               Motivación
@@ -623,14 +623,14 @@ export default function Page() {
           )}
 
           {motivationOpen && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/40 p-6">
-              <div className="max-w-2xl rounded-3xl border border-white/80 bg-white/90 p-10 text-center shadow-2xl backdrop-blur">
-                <p className="text-2xl font-semibold text-slate-900 md:text-3xl">{motivationLine}</p>
-                <p className="mt-3 text-sm text-slate-500">Respira, ajusta el ritmo y sigue avanzando.</p>
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/40 p-6 dark:bg-slate-950/70">
+              <div className="max-w-2xl rounded-3xl border border-white/80 bg-white/90 p-10 text-center shadow-2xl backdrop-blur dark:border-slate-800 dark:bg-slate-900/90">
+                <p className="text-2xl font-semibold text-slate-900 dark:text-slate-100 md:text-3xl">{motivationLine}</p>
+                <p className="mt-3 text-sm text-slate-500 dark:text-slate-300">Respira, ajusta el ritmo y sigue avanzando.</p>
                 <button
                   type="button"
                   onClick={handleCloseMotivation}
-                  className="mt-8 inline-flex items-center justify-center rounded-full bg-brand-600 px-6 py-2.5 text-sm font-semibold text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-brand-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
+                  className="mt-8 inline-flex items-center justify-center rounded-full bg-brand-600 px-6 py-2.5 text-sm font-semibold text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-brand-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 dark:bg-brand-500 dark:hover:bg-brand-400"
                 >
                   Cerrar
                 </button>
