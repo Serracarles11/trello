@@ -31,7 +31,8 @@ export function TaskCard({
   godMode?: boolean;
 }) {
   const { attributes, listeners, setNodeRef, transform, isDragging } = useDraggable({
-    id: task.id
+    id: task.id,
+    disabled: dragging
   });
 
   const [tick, setTick] = React.useState(0);
@@ -41,9 +42,10 @@ export function TaskCard({
     return () => clearInterval(interval);
   }, [task.fechaInicio, task.estado]);
 
-  const style = {
-    transform: CSS.Translate.toString(transform)
-  };
+  const style = dragging || isDragging ? undefined : { transform: CSS.Translate.toString(transform) };
+  const dragAttributes = dragging ? {} : attributes;
+  const dragListeners = dragging ? {} : listeners;
+  const dragRef = dragging ? undefined : setNodeRef;
 
   const now = Date.now();
   const isDone = task.estado === "done";
@@ -55,16 +57,16 @@ export function TaskCard({
 
   return (
     <article
-      ref={setNodeRef}
+      ref={dragRef}
       style={style}
       className={cn(
         "kb-card space-y-3 p-4",
         isRunning && "border-amber-500/70 bg-amber-50 shadow-[0_10px_30px_-18px_rgba(245,158,11,0.65)] dark:bg-amber-950/30 dark:border-amber-600/60",
-        (isDragging || dragging) && "opacity-70",
+        isDragging && !dragging && "opacity-0",
         dragging && "shadow-lg"
       )}
-      {...attributes}
-      {...listeners}
+      {...dragAttributes}
+      {...dragListeners}
     >
       <div className="flex flex-wrap items-start justify-between gap-2">
         <div>
