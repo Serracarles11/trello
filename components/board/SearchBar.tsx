@@ -25,8 +25,8 @@ export function SearchBar({ value, onChange }: { value: string; onChange: (value
         </PopoverTrigger>
         <PopoverContent align="end">
           <div className="space-y-2">
-            <p className="text-sm font-semibold text-slate-700">Sintaxis rápida</p>
-            <ul className="space-y-1 text-xs text-slate-600">
+            <p className="text-sm font-semibold text-slate-700 dark:text-slate-200">Sintaxis rápida</p>
+            <ul className="space-y-1 text-xs text-slate-600 dark:text-slate-300">
               <li>`tag:react` filtra por tag exacto</li>
               <li>`p:high` prioridad alta</li>
               <li>`due:overdue` vencidas</li>
@@ -34,7 +34,7 @@ export function SearchBar({ value, onChange }: { value: string; onChange: (value
               <li>`est:&lt;60` menos de 60 minutos</li>
               <li>`est:&gt;=120` 120 o más minutos</li>
             </ul>
-            <p className="text-xs text-slate-500">Puedes combinar texto libre + operadores.</p>
+            <p className="text-xs text-slate-500 dark:text-slate-400">Puedes combinar texto libre + operadores.</p>
           </div>
         </PopoverContent>
       </Popover>

@@ -25,7 +25,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="es">
-      <body className={`${display.variable} ${body.variable} font-body text-slate-900`}>
+      <body className={`${display.variable} ${body.variable} font-body text-slate-900 dark:text-slate-100`}>
         {children}
         <Toaster richColors />
       </body>
