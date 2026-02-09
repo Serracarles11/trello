@@ -53,10 +53,10 @@ Mini gestor Kanban (Todo / Doing / Done) para operaciones de mesa de trading y b
 ## Capturas
 
 ```md
-![portada](imagen/portada.png)
-![auditoria](imagen/auditoria.png)
-![motivacion](imagen/motivacion.png)
-![tablero](imagen/tablero.png)
+imagen/portada.png
+imagen/auditoria.png
+imagen/motivacion.png
+imagen/tablero.png
 
 ```
 
